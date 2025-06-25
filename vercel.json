@@ -2,26 +2,22 @@
   "version": 2,
   "builds": [
     {
-      "src": "Main.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "15mb",
-        "runtime": "python3.9"
-      }
+      "src": "main.py",
+      "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "Main.py"
+      "dest": "main.py"
     }
   ],
-  "env": {
-    "PYTHONPATH": "./"
-  },
   "functions": {
-    "Main.py": {
-      "maxDuration": 30
+    "main.py": {
+      "runtime": "python3.9"
     }
+  },
+  "env": {
+    "PYTHONPATH": "."
   }
 }
