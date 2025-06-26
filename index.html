@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MedSimplify AI</title>
+</head>
+<body>
+    <h1>🩺 MedSimplify AI</h1>
+    <textarea id="input" rows="6" cols="50" placeholder="Enter your medical text..."></textarea><br>
+    <button onclick="simplify()">Simplify</button>
+    <pre id="result"></pre>
+
+    <script>
+        async function simplify() {
+            const inputValue = document.getElementById("input").value;
+            const resultDiv = document.getElementById("result");
+            resultDiv.textContent = "Processing...";
+
+            const response = await fetch("/api/simplify", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    input_value: inputValue,
+                    output_type: "chat",
+                    input_type: "chat"
+                })
+            });
+
+            const result = await response.json();
+            resultDiv.textContent = JSON.stringify(result, null, 2);
+        }
+    </script>
+</body>
+</html>
